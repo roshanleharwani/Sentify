@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" class="scrollbar-hidden">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Sentiment Analysis</title>
+    <link rel="stylesheet" href="/stylesheets/output.css">
+</head>
+
+<body class="w-full ">
+    <header class="text-gray-400 bg-gray-900 body-font">
+        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+            <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
+                <img src="/images/logo.png" class="w-12">
+
+                <span class=" ml-3 text-2xl font-semibold ">Sentify</span>
+            </a>
+            <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+                <label for="home"><img src="/images/home.png" class="w-6 mr-2 cursor-pointer" alt=""></label>
+                <a href="/" class="mr-5 hover:text-white cursor-pointer" name="about">Home</a>
+                <label for="about"><img src="/images/about.png" class="w-6 mr-2 cursor-pointer" alt=""></label>
+                <a href="/about" class="mr-5 hover:text-white cursor-pointer" name="about">About Me</a>
+                <label for="github"><img src="/images/github.png" class="cursor-pointer w-6 mr-2" alt=""></label>
+                <a href="https://github.com/roshanleharwani/" class="mr-5 hover:text-white cursor-pointer"
+                    name="github">Github</a>
+                <span class="text-3xl">|</span>
+                <div>
+                    <div class="drawer drawer-end">
+                        <input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
+                        <div class="drawer-content">
+                            <!-- Page content here -->
+                            <label for="my-drawer-4" class="drawer-button btn bg-transparent"><img
+                                    src="/images/menu.png" class="w-8" alt=""></label>
+                        </div>
+                        <div class="drawer-side">
+                            <label for="my-drawer-4" aria-label="close sidebar" class="drawer-overlay"></label>
+                            <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+                                <li class=" my-5 w-full text-xl text-white flex justify-center items-center">
+                                    Finance Tools
+                                </li>
+                                <li><a class="text-lg text-gray-200  ">Market Mood
+                                        Index</a></li>
+                                <li><a class="text-lg text-gray-200">Sentiment Analysis</a></li>
+                                <li><a class="text-lg text-gray-200">Stock price prediction</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="bg-gray-900  flex w-full flex-col justify-center  gap-y-20 items-center  h-screen">
+
+        <!-- Heading -->
+        <h1 id="heading"
+            class="text-4xl font-semibold bg-clip-text transition duration-700 ease-in-out bg-gradient-to-br from-gray-100 via-slate-400 to-slate-700">
+            Sentiment Analysis
+        </h1>
+
+        <!-- Form -->
+        <form action="/search" method="POST" class="w-full flex justify-center items-center ">
+            <div for="ticker" class="flex px-4 pr-1 w-1/2 h-16   rounded-full bg-zinc-950 justify-center items-center">
+                <!-- Input Field -->
+                <input type="text" id="tickerInput" name="ticker" placeholder="Search for a company"
+                    class="w-full outline-none  caret-white focus:scale-105  transition duration-700 ease-in-out focus:placeholder-transparent   pl-2 rounded-full bg-transparent"
+                    onfocus="document.getElementById('heading').classList.add('hidden');document.getElementById('keycaps').classList.add('hidden')"
+                    onblur="document.getElementById('heading').classList.remove('hidden');document.getElementById('keycaps').classList.remove('hidden')">
+
+                <!-- Search Icon -->
+                <a href="">
+                    <img src="/images/search.png" alt="" class="w-16 p-4 rounded-full hover:bg-gray-800">
+                </a>
+            </div>
+        </form>
+        <div id="keycaps" class="flex -mt-10 justify-center items-center gap-x-2">
+            <img src="/images/ctrl.png" alt="" class="w-12">
+            <div class="text-xl">+</div>
+            <img src="/images/k.png" alt="" class="w-7 border-white">
+        </div>
+    </main>
+
+</body>
+<script>
+    // Focus on 'Ctrl + K' and remove focus on 'Escape'
+    document.addEventListener('keydown', function (event) {
+        const inputField = document.getElementById('tickerInput');
+
+        // Check if 'Ctrl + K' is pressed to focus
+        if (event.ctrlKey && event.key === 'k') {
+            event.preventDefault(); // Prevent default action of 'Ctrl + K'
+            inputField.focus(); // Focus on the input field
+        }
+
+        // Check if 'Escape' is pressed to remove focus
+        if (event.key === 'Escape') {
+            inputField.blur(); // Remove focus from the input field
+        }
+    });
+</script>
+
+
+</html>

@@ -2,8 +2,8 @@ from transformers import pipeline
 import feedparser
 
 # Set up parameters
-ticker = "HYUNDAI"
-keyword = "IPO"
+ticker = "NIFTY_50"
+keyword = "Nifty 50"
 rss_url = f"https://news.google.com/rss/search?q={ticker}+stock+news+india"
 
 # Initialize sentiment analysis pipeline

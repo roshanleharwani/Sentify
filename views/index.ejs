@@ -10,19 +10,19 @@
 
 <body class="w-full ">
     <header class="text-gray-400 bg-gray-900 body-font">
-        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-            <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
+        <div class="container flex flex-col flex-wrap items-center p-5 mx-auto md:flex-row">
+            <a class="flex items-center mb-4 font-medium text-white title-font md:mb-0">
                 <img src="/images/logo.png" class="w-12">
 
-                <span class=" ml-3 text-2xl font-semibold ">Sentify</span>
+                <span class="ml-3 text-2xl font-semibold ">Sentify</span>
             </a>
-            <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-                <label for="home"><img src="/images/home.png" class="w-6 mr-2 cursor-pointer" alt=""></label>
-                <a href="/" class="mr-5 hover:text-white cursor-pointer" name="about">Home</a>
+            <nav class="flex flex-wrap items-center justify-center text-base md:ml-auto">
+                <label for="home"><img src="/images/home.png" class="mr-2 cursor-pointer w-7" alt=""></label>
+                <a href="/" class="mr-5 cursor-pointer hover:text-white" name="about">Home</a>
                 <label for="about"><img src="/images/about.png" class="w-6 mr-2 cursor-pointer" alt=""></label>
-                <a href="/about" class="mr-5 hover:text-white cursor-pointer" name="about">About Me</a>
-                <label for="github"><img src="/images/github.png" class="cursor-pointer w-6 mr-2" alt=""></label>
-                <a href="https://github.com/roshanleharwani/" class="mr-5 hover:text-white cursor-pointer"
+                <a href="/about" class="mr-5 cursor-pointer hover:text-white" name="about">About Me</a>
+                <label for="github"><img src="/images/github.png" class="w-6 mr-2 cursor-pointer" alt=""></label>
+                <a href="https://github.com/roshanleharwani/" class="mr-5 cursor-pointer hover:text-white"
                     name="github">Github</a>
                 <span class="text-3xl">|</span>
                 <div>
@@ -30,16 +30,16 @@
                         <input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
                         <div class="drawer-content">
                             <!-- Page content here -->
-                            <label for="my-drawer-4" class="drawer-button btn bg-transparent"><img
+                            <label for="my-drawer-4" class="bg-transparent drawer-button btn"><img
                                     src="/images/menu.png" class="w-8" alt=""></label>
                         </div>
                         <div class="drawer-side">
                             <label for="my-drawer-4" aria-label="close sidebar" class="drawer-overlay"></label>
-                            <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4">
-                                <li class=" my-5 w-full text-xl text-white flex justify-center items-center">
+                            <ul class="min-h-full p-4 menu bg-base-200 text-base-content w-80">
+                                <li class="flex items-center justify-center w-full my-5 text-xl text-white ">
                                     Finance Tools
                                 </li>
-                                <li><a class="text-lg text-gray-200  ">Market Mood
+                                <li><a class="text-lg text-gray-200 ">Market Mood
                                         Index</a></li>
                                 <li><a class="text-lg text-gray-200">Sentiment Analysis</a></li>
                                 <li><a class="text-lg text-gray-200">Stock price prediction</a></li>
@@ -51,33 +51,34 @@
         </div>
     </header>
 
-    <main class="bg-gray-900  flex w-full flex-col justify-center  gap-y-20 items-center  h-screen">
+    <main class="flex flex-col items-center justify-center w-full h-screen bg-gray-900 gap-y-20">
 
         <!-- Heading -->
         <h1 id="heading"
-            class="text-4xl font-semibold bg-clip-text transition duration-700 ease-in-out bg-gradient-to-br from-gray-100 via-slate-400 to-slate-700">
+            class="text-4xl font-semibold transition duration-700 ease-in-out bg-clip-text bg-gradient-to-br from-gray-100 via-slate-400 to-slate-700">
             Sentiment Analysis
         </h1>
 
         <!-- Form -->
-        <form action="/search" method="POST" class="w-full flex justify-center items-center ">
-            <div for="ticker" class="flex px-4 pr-1 w-1/2 h-16   rounded-full bg-zinc-950 justify-center items-center">
+        <form action="/search" method="POST" class="flex items-center justify-center w-full ">
+            <div for="ticker" class="flex items-center justify-center w-1/2 h-16 px-4 pr-1 rounded-full bg-zinc-950">
                 <!-- Input Field -->
                 <input type="text" id="tickerInput" name="ticker" placeholder="Search for a company"
-                    class="w-full outline-none  caret-white focus:scale-105  transition duration-700 ease-in-out focus:placeholder-transparent   pl-2 rounded-full bg-transparent"
+                    class="w-full pl-2 transition duration-700 ease-in-out bg-transparent rounded-full outline-none caret-white focus:scale-105 focus:placeholder-transparent"
                     onfocus="document.getElementById('heading').classList.add('hidden');document.getElementById('keycaps').classList.add('hidden')"
                     onblur="document.getElementById('heading').classList.remove('hidden');document.getElementById('keycaps').classList.remove('hidden')">
 
                 <!-- Search Icon -->
-                <a href="">
-                    <img src="/images/search.png" alt="" class="w-16 p-4 rounded-full hover:bg-gray-800">
-                </a>
+                <button>
+                    <img src="/images/search.png" alt="search"
+                        class="w-16 p-4 transition duration-500 ease-in-out rounded-full hover:scale-105 hover:bg-gray-800">
+                </button>
             </div>
         </form>
-        <div id="keycaps" class="flex -mt-10 justify-center items-center gap-x-2">
+        <div id="keycaps" class="flex items-center justify-center -mt-10 gap-x-2">
             <img src="/images/ctrl.png" alt="" class="w-12">
             <div class="text-xl">+</div>
-            <img src="/images/k.png" alt="" class="w-7 border-white">
+            <img src="/images/k.png" alt="" class="border-white w-7">
         </div>
     </main>
 

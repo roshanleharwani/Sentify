@@ -1,0 +1,28 @@
+{
+    "data": [
+        {
+            "x": [
+                "2020-01-01",
+                "2020-01-02",
+                "2020-01-03"
+            ],
+            "y": [
+                100,
+                101,
+                102
+            ],
+            "type": "scatter",
+            "mode": "lines",
+            "name": "Close Price"
+        }
+    ],
+    "layout": {
+        "title": "Stock Price Prediction",
+        "xaxis": {
+            "title": "Date"
+        },
+        "yaxis": {
+            "title": "Price"
+        }
+    }
+}

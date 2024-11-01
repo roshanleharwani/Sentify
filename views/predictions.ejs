@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Price Prediction</title>
+    <link rel="stylesheet" href="/stylesheets/output.css">
+
+</head>
+
+<body>
+    <header class="text-gray-400 body-font">
+        <div class="container flex flex-col flex-wrap items-center p-5 mx-auto md:flex-row">
+            <a class="flex items-center mb-4 font-medium text-white title-font md:mb-0">
+                <img src="/images/logo.png" class="w-12">
+
+                <span class="ml-3 text-2xl font-semibold ">Sentify</span>
+            </a>
+            <nav class="flex flex-wrap items-center justify-center text-base md:ml-auto">
+                <label for="home"><img src="/images/home.png" class="mr-2 cursor-pointer w-7" alt=""></label>
+                <a href="/" class="mr-5 cursor-pointer hover:text-white" name="about">Home</a>
+                <label for="about"><img src="/images/about.png" class="w-6 mr-2 cursor-pointer" alt=""></label>
+                <a href="/about" class="mr-5 cursor-pointer hover:text-white" name="about">About Me</a>
+                <label for="github"><img src="/images/github.png" class="w-6 mr-2 cursor-pointer" alt=""></label>
+                <a href="https://github.com/roshanleharwani/" class="mr-5 cursor-pointer hover:text-white"
+                    name="github">Github</a>
+                <span class="text-3xl">|</span>
+                <div>
+                    <div class="inset-0 z-50 drawer drawer-end">
+                        <input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
+                        <div class="drawer-content">
+                            <!-- Page content here -->
+                            <label for="my-drawer-4" class="bg-transparent drawer-button btn"><img
+                                    src="/images/menu.png" class="w-8" alt=""></label>
+                        </div>
+                        <div class="drawer-side z-1000">
+                            <label for="my-drawer-4" aria-label="close sidebar" class="drawer-overlay"></label>
+                            <ul class="min-h-full p-4 menu bg-base-200 text-base-content w-80">
+                                <li class="flex items-center justify-center w-full my-5 text-xl text-white ">
+                                    Finance Tools
+                                </li>
+                                <li><a class="text-lg text-gray-200 ">Market Mood
+                                        Index</a></li>
+                                <li><a class="text-lg text-gray-200">Sentiment Analysis</a></li>
+                                <li><a class="text-lg text-gray-200">Stock price prediction</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main class="flex flex-col items-center justify-center">
+        <h1 class="text-4xl font-semibold bg-clip-text bg-gradient-to-br from-slate-300 via-gray-300 to-gray-700">Stock
+            Price Prediction</h1>
+        <div class="w-5/6 m-10">
+            <%-result%>
+        </div>
+    </main>
+
+</body>
+
+</html>

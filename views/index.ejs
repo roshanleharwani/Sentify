@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" class="scrollbar-hidden">
+<html lang="en" class="scrollbar-hidden bg-gradient-to-tr from-gray-800 via-gray-900 to-gray-950">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Financial Sentiment Analysis</title>
+
     <link rel="stylesheet" href="/stylesheets/output.css">
 </head>
 
 <body class="w-full ">
-    <header class="text-gray-400 bg-gray-900 body-font">
+    <header class="text-gray-400 body-font">
         <div class="container flex flex-col flex-wrap items-center p-5 mx-auto md:flex-row">
             <a class="flex items-center mb-4 font-medium text-white title-font md:mb-0">
                 <img src="/images/logo.png" class="w-12">
@@ -41,8 +42,8 @@
                                 </li>
                                 <li><a class="text-lg text-gray-200 ">Market Mood
                                         Index</a></li>
-                                <li><a class="text-lg text-gray-200">Sentiment Analysis</a></li>
-                                <li><a class="text-lg text-gray-200">Stock price prediction</a></li>
+                                <li><a href="/" class="text-lg text-gray-200">Sentiment Analysis</a></li>
+                                <li><a href="/stockPrice" class="text-lg text-gray-200">Stock price prediction</a></li>
                             </ul>
                         </div>
                     </div>
@@ -51,29 +52,58 @@
         </div>
     </header>
 
-    <main class="flex flex-col items-center justify-center w-full h-screen bg-gray-900 gap-y-20">
+    <main class="flex flex-col items-center justify-center w-full h-screen gap-y-16">
 
         <!-- Heading -->
         <h1 id="heading"
             class="text-4xl font-semibold transition duration-700 ease-in-out bg-clip-text bg-gradient-to-br from-gray-100 via-slate-400 to-slate-700">
-            Sentiment Analysis
+            Stock Sentiment Analysis
         </h1>
-
+        <div class="flex items-center justify-center text-base text-gray-400 gap-x-2">
+            <img src="/images/about.png" alt="" class="w-4 opacity-65">
+            <h3>Gain insights into market sentiment for any specific stock with this analysis tool.</h3>
+        </div>
         <!-- Form -->
-        <form action="/search" method="POST" class="flex items-center justify-center w-full ">
+        <form action="/search" method="POST" class="flex flex-col items-center justify-center w-full ">
             <div for="ticker" class="flex items-center justify-center w-1/2 h-16 px-4 pr-1 rounded-full bg-zinc-950">
                 <!-- Input Field -->
-                <input type="text" id="tickerInput" name="ticker" placeholder="Search for a company"
+                <input type="text" id="tickerInput" name="ticker" required
+                    placeholder="Search for a stock [Enter ticker name of stock]"
                     class="w-full pl-2 transition duration-700 ease-in-out bg-transparent rounded-full outline-none caret-white focus:scale-105 focus:placeholder-transparent"
-                    onfocus="document.getElementById('heading').classList.add('hidden');document.getElementById('keycaps').classList.add('hidden')"
-                    onblur="document.getElementById('heading').classList.remove('hidden');document.getElementById('keycaps').classList.remove('hidden')">
-
-                <!-- Search Icon -->
-                <button>
-                    <img src="/images/search.png" alt="search"
+                    <!-- Search Icon -->
+                <button id="searchButton">
+                    <img src="/images/search.png" alt="search" id="searchButton"
                         class="w-16 p-4 transition duration-500 ease-in-out rounded-full hover:scale-105 hover:bg-gray-800">
                 </button>
             </div>
+            <div id='toggleButton'
+                class="mt-2 text-lg text-gray-400 transition cursor-pointer hover:underline hover:scale-105 hover:duration-300">
+                Advance Options</div>
+            <div class="flex items-center justify-center hidden w-full gap-x-1" id="toggleDiv">
+                <div class="w-1/4 hover:tooltip hover:tooltip-bottom ">
+                    <input type="text" name="keywords" placeholder="keywords  [comma separated] " id="keywords"
+                        class="w-full h-12 p-2 mt-5  text-white focus:border-[1px] bg-gray-950 cursor-pointer rounded-2xl hover:outline-gray-700 tooltip-info tooltip focus:border-gray-100 focus:outline-none">
+                </div>
+                <div class="w-1/4 hover:tooltip hover:tooltip-bottom">
+
+                    <input type="text" name="country" placeholder="Enter country name" id="countryInput"
+                        autocomplete="off"
+                        class="w-full h-12 p-2 mt-5 inset-0 text-white focus:border-[1px] bg-gray-950 cursor-pointer rounded-2xl hover:outline-gray-700 tooltip-info tooltip focus:border-gray-100 focus:outline-none">
+                    <div class="relative">
+                        <div id="suggestions"
+                            class="absolute left-0 z-10 w-full mt-1 overflow-y-auto bg-gray-800 rounded-lg shadow-lg max-h-48">
+                            <!-- Suggestion items will be added here dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="loadingScreen"
+                class="fixed inset-0 z-50 flex items-center justify-center hidden bg-gray-400 bg-opacity-70">
+                <img src="/images/animate.gif" alt="Loading..." class="h-96">
+            </div>
+
         </form>
         <div id="keycaps" class="flex items-center justify-center -mt-10 gap-x-2">
             <img src="/images/ctrl.png" alt="" class="w-12">
@@ -81,25 +111,7 @@
             <img src="/images/k.png" alt="" class="border-white w-7">
         </div>
     </main>
-
+    <script src="/javascripts/sentimentScript.js"></script>
 </body>
-<script>
-    // Focus on 'Ctrl + K' and remove focus on 'Escape'
-    document.addEventListener('keydown', function (event) {
-        const inputField = document.getElementById('tickerInput');
-
-        // Check if 'Ctrl + K' is pressed to focus
-        if (event.ctrlKey && event.key === 'k') {
-            event.preventDefault(); // Prevent default action of 'Ctrl + K'
-            inputField.focus(); // Focus on the input field
-        }
-
-        // Check if 'Escape' is pressed to remove focus
-        if (event.key === 'Escape') {
-            inputField.blur(); // Remove focus from the input field
-        }
-    });
-</script>
-
 
 </html>

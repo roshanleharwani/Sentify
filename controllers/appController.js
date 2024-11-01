@@ -1,5 +1,7 @@
-
+const path = require('path');
 const axios = require('axios');
+const fs = require('fs');
+
 
 exports.index = (req,res)=>{
     return res.render('index')
@@ -10,21 +12,36 @@ exports.about = (req,res) =>{
 }
 
 
-
-
-
 exports.search = async (req, res) => {
     const ticker = req.body.ticker || "";
     const keywords = req.body.keywords || "";
+    const country = req.body.country.replace(/\s+/g, '') || "";
     
     try {
-        // Add protocol to the URL and await the response, then access .data
-        const response = await axios.post(`http://localhost:5000/analyse?ticker=${ticker}&keywords=${keywords}`);
-        const result = response.data;  // Access the data property of the response
-        
+        const response = await axios.post(`http://localhost:5000/analyse?ticker=${ticker}&keywords=${keywords}&country=${country}`);
+        const result = response.data;          
         return res.render('sentiment_result', { result: result });
     } catch (error) {
         console.error("Error in search function:", error);
         return res.status(500).send("An error occurred while processing your request.");
+    }
+};
+
+exports.predictions = (req,res)=>{
+    return res.render('stockPredict')
+}
+
+exports.predict = async (req, res) => {
+    const ticker = req.body.ticker || "";
+    const date = req.body.date != null? req.body.date: "2020-01-01";
+    const period = req.body.period || 1;
+
+    try {
+        // Send data in POST body
+        const result = await axios.post(`http://localhost:5000/predict?ticker=${ticker}&date=${date}&period=${period}`);
+        return res.render('predictions', { result: result.data });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Error fetching predictions");
     }
 };

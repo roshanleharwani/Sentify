@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" class="scrollbar-hidden bg-gradient-to-tr from-gray-800 via-gray-900 to-gray-950">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Sentiment Analysis</title>
+
+    <link rel="stylesheet" href="/stylesheets/output.css">
+</head>
+
+<body class="w-full ">
+    <header class="text-gray-400 body-font">
+        <div class="container flex flex-col flex-wrap items-center p-5 mx-auto md:flex-row">
+            <a class="flex items-center mb-4 font-medium text-white title-font md:mb-0">
+                <img src="/images/logo.png" class="w-12">
+
+                <span class="ml-3 text-2xl font-semibold ">Sentify</span>
+            </a>
+            <nav class="flex flex-wrap items-center justify-center text-base md:ml-auto">
+                <label for="home"><img src="/images/home.png" class="mr-2 cursor-pointer w-7" alt=""></label>
+                <a href="/" class="mr-5 cursor-pointer hover:text-white" name="about">Home</a>
+                <label for="about"><img src="/images/about.png" class="w-6 mr-2 cursor-pointer" alt=""></label>
+                <a href="/about" class="mr-5 cursor-pointer hover:text-white" name="about">About Me</a>
+                <label for="github"><img src="/images/github.png" class="w-6 mr-2 cursor-pointer" alt=""></label>
+                <a href="https://github.com/roshanleharwani/" class="mr-5 cursor-pointer hover:text-white"
+                    name="github">Github</a>
+                <span class="text-3xl">|</span>
+                <div>
+                    <div class="drawer drawer-end">
+                        <input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
+                        <div class="drawer-content">
+                            <!-- Page content here -->
+                            <label for="my-drawer-4" class="bg-transparent drawer-button btn"><img
+                                    src="/images/menu.png" class="w-8" alt=""></label>
+                        </div>
+                        <div class="drawer-side">
+                            <label for="my-drawer-4" aria-label="close sidebar" class="drawer-overlay"></label>
+                            <ul class="min-h-full p-4 menu bg-base-200 text-base-content w-80">
+                                <li class="flex items-center justify-center w-full my-5 text-xl text-white ">
+                                    Finance Tools
+                                </li>
+                                <li><a class="text-lg text-gray-200 ">Market Mood
+                                        Index</a></li>
+                                <li><a class="text-lg text-gray-200">Sentiment Analysis</a></li>
+                                <li><a class="text-lg text-gray-200">Stock price prediction</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex flex-col items-center justify-center w-full h-screen gap-y-16">
+
+        <!-- Heading -->
+        <h1 id="heading"
+            class="text-4xl font-semibold transition duration-700 ease-in-out bg-clip-text bg-gradient-to-br from-gray-100 via-slate-400 to-slate-700">
+            Stock Price Predictions
+        </h1>
+        <div class="flex items-center justify-center text-base text-gray-400 gap-x-2">
+            <img src="/images/about.png" alt="" class="w-4 opacity-65">
+            <h3>Unlock predictive insights on stock prices with our advanced forecasting tool.</h3>
+        </div>
+        <!-- Form -->
+        <form action="/predict" method="post" class="flex flex-col items-center justify-center w-full ">
+            <div for="ticker"
+                class="flex items-center justify-center w-1/2 h-16 border-[0.5px] border-gray-700 px-4 pr-1 rounded-full bg-zinc-950">
+                <!-- Input Field -->
+                <input type="text" id="tickerInput" name="ticker" required
+                    placeholder="Search for a stock [Enter ticker name of stock]"
+                    class="w-full pl-2 transition duration-700 ease-in-out bg-transparent rounded-full outline-none caret-white focus:scale-105 focus:placeholder-transparent"
+                    <!-- Search Icon -->
+                <button id="searchButton" type="submit"
+                    class="flex items-center justify-center px-4 py-[14px]  border-l-0 transition duration-500 ease-in-out bg-zinc-900   rounded-e-full gap-x-2 hover:scale-105 hover:bg-gray-800">
+                    <img src="/images/prediction.png" alt="search" id="searchButton" class="w-8">
+                    <div for="searchButton" class="text-lg text-white">Predict</div>
+                </button>
+            </div>
+            <div id='toggleButton'
+                class="mt-2 text-lg text-gray-400 transition cursor-pointer hover:underline hover:scale-105 hover:duration-300">
+                Advance Options</div>
+            <div class="flex items-center justify-center hidden w-screen gap-10 mt-5" id="toggleDiv">
+
+                <div class="flex flex-col items-center justify-center gap-1 ">
+                    <label for="date"
+                        class="self-start ml-2 font-medium text-gray-400 text-md hover:tooltip hover:tooltip-top "
+                        data-tip="Date from which data to be collected">Date</label>
+                    <input type="date" name="date" id="date" value="2020-01-01" max="2020-01-01"
+                        class="p-2 text-lg bg-gray-900 border-[0.5px] border-gray-500 rounded-2xl">
+                </div>
+                <div>
+                    <div class="flex flex-col items-center justify-center -mr-28">
+                        <label for="period" data-tip="Forecast prices for "
+                            class="self-start mb-2 ml-2 font-medium text-gray-400 text-md hover:tooltip hover:tooltip-top ">Forecast</label>
+                        <div>
+                            <input type="range" min="1" max="4" class="w-64 range" step="1" value="1" name="period" />
+                            <div class="flex justify-between w-full px-2 text-xs">
+                                <span>3 M</span>
+                                <span>6 M</span>
+                                <span>9 M</span>
+                                <span>1 Y</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="loadingScreen"
+                class="fixed inset-0 z-50 flex items-center justify-center hidden bg-gray-400 bg-opacity-70">
+                <img src="/images/animate.gif" alt="Loading..." class="h-96">
+            </div>
+
+        </form>
+        <div id="keycaps" class="flex items-center justify-center -mt-10 gap-x-2">
+            <img src="/images/ctrl.png" alt="" class="w-12">
+            <div class="text-xl">+</div>
+            <img src="/images/k.png" alt="" class="border-white w-7">
+        </div>
+    </main>
+    <script src="/javascripts/sentimentScript.js"></script>
+</body>
+
+</html>

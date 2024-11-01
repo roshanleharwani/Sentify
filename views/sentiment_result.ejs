@@ -53,14 +53,14 @@
     <% const sentiment=result.sentiment%>
         <main class="flex flex-col items-center justify-center h-screen bg-gray-900 mt-96">
             <h1 class="px-8 py-2 mb-20 text-4xl text-gray-300 border-b-4 ">Sentiment Indicator</h1>
-            <div class="tooltip tooltip-top tooltip-warning <%= sentiment == 'neutral' ? 'tooltip-open' : '' %>"
+            <div class="tooltip tooltip-top tooltip-warning  <%= sentiment == 'neutral' ? 'tooltip-open' : '' %>"
                 data-tip="Market sentiment is balanced, showing a stable outlook.">
                 <button class="mb-2 border-none btn-warning btn">Neutral</button>
             </div>
             <div class="flex items-center justify-around gap-4">
                 <div class="text-xl tooltip tooltip-left tooltip-success <%= sentiment == 'positive' ? 'tooltip-open' : '' %>"
                     data-tip="Market sentiment is optimistic, indicating potential growth opportunities.">
-                    <button class="bg-green-100 border-none btn-success btn ">Positive</button>
+                    <button class="bg-green-300 border-none btn-success btn ">Positive</button>
                 </div>
 
                 <div
@@ -76,7 +76,7 @@
       )
 %>
  rounded-full size-72">
-                        <img id="rotateImage" src="/images/marker.png" class="w-3/4 <%= 
+                        <img id="rotateImage" src="/images/marker.png" class="w-5/6 <%= 
   sentiment === 'neutral' 
     ? 'rotate-90' 
     : (sentiment === 'positive' 
@@ -90,20 +90,22 @@
                 </div>
                 <div class="tooltip tooltip-right tooltip-error <%= sentiment == 'negative' ? 'tooltip-open' : '' %> "
                     data-tip="Market sentiment is cautious, suggesting potential risks ahead">
-                    <button class="mb-2 bg-red-200 border-none btn-error btn">Negative</button>
+                    <button class="mb-2 bg-red-300 border-none btn-error btn">Negative</button>
                 </div>
             </div>
+
             <div class="flex flex-col items-center justify-center gap-5 mt-5">
+
                 <div
                     class="text-3xl font-semibold score bg-clip-text bg-gradient-to-br from-gray-100 via-slate-400 to-slate-600">
                     Score: <%= (Number(result.score) || 0).toFixed(2) %>
                 </div>
                 <h1
-                    class="text-4xl font-semibold  bg-clip-text bg-gradient-to-br from-gray-100 via-slate-400 to-slate-700">
+                    class="text-4xl font-semibold bg-clip-text bg-gradient-to-br from-gray-100 via-slate-400 to-slate-700">
                     Fetched Articles</h1>
                 <div class="flex items-center justify-center w-screen h-screen bg-gray-900 ">
                     <textarea name="terminal" id="" readonly
-                        class="w-3/4 p-2 text-green-500 border-4 border-white rounded-lg resize-none h-2/3 bg-gray-950">>_ Analysing Articles
+                        class="w-3/4 h-full p-2 text-green-500 border-4 border-white rounded-lg resize-none bg-gray-950">>_ Analysing Articles
 Number of Articles found: <%= result.total_articles %>
                 
 <% result.articles.forEach((article)=> { %>

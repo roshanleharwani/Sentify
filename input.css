@@ -10,3 +10,22 @@
 .scrollbar-hidden::-webkit-scrollbar {
     display: none; /* For Chrome, Safari, and Opera */
 }
+
+/* Add this in your global CSS file */
+@media (orientation: landscape) {
+    .landscape-only {
+        display: block;
+    }
+    .portrait-only {
+        display: none;
+    }
+}
+
+@media (orientation: portrait) {
+    .landscape-only {
+        display: none;
+    }
+    .portrait-only {
+        display: block;
+    }
+}

@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-app.get('/',controller.index)
+app.get('/sentiment',controller.sentiment)
 
 app.get('/about',controller.about)
 
@@ -25,5 +25,12 @@ app.get('/stockPrice',controller.predictions)
 
 app.post('/predict',controller.predict)
 
+app.get('/',controller.index)
+
+app.get('/test',controller.test)
+
+app.get('/marketMood',controller.marketMood)
+
+app.post('/marketSentiment',controller.mood)
 
 app.listen(3000)

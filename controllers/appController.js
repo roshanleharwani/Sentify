@@ -1,9 +1,14 @@
-const path = require('path');
 const axios = require('axios');
-const fs = require('fs');
+const fs = require('fs')
+const path = require('path')
+
 
 
 exports.index = (req,res)=>{
+    return res.render('landing')
+}
+
+exports.sentiment = (req,res)=>{
     return res.render('index')
 }
 
@@ -11,6 +16,17 @@ exports.about = (req,res) =>{
     return res.render('about')
 }
 
+
+exports.test = (req, res) => {
+    fs.readFile('./sentiment.json', 'utf-8', (err, data) => {
+        if (err) {
+            console.error('Error reading file:', err);
+            return res.status(500).send('Server Error');
+        }
+        const result = JSON.parse(data);
+        return res.render('test', { result });
+    });
+};
 
 exports.search = async (req, res) => {
     const ticker = req.body.ticker || "";
@@ -43,5 +59,23 @@ exports.predict = async (req, res) => {
     } catch (error) {
         console.log(error);
         res.status(500).send("Error fetching predictions");
+    }
+};
+
+
+exports.marketMood = async (req, res) => {
+    res.render("marketMood")
+}
+
+exports.mood = async (req, res) => {
+    const ticker = req.body.ticker || "";
+    
+    try {
+        const response = await axios.get(`http://localhost:5000/marketMood?ticker=${ticker}`);
+        const result = response.data;          
+        return res.render('sentiment_result', { result: result });
+    } catch (error) {
+        console.error("Error in search function:", error);
+        return res.status(500).send("An error occurred while processing your request.");
     }
 };

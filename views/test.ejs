@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" class="overflow-x-hidden bg-gray-900 scrollbar-hidden">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Result</title>
+
+    <link rel="stylesheet" href="/stylesheets/output.css">
+</head>
+
+<body>
+    <header class="text-gray-400 body-font">
+        <div class="container flex flex-col flex-wrap items-center p-5 mx-auto md:flex-row">
+            <a class="flex items-center mb-4 font-medium text-white title-font md:mb-0">
+                <img src="/images/logo.png" class="w-8 md:w-12">
+
+                <span class="ml-3 text-2xl font-semibold ">Sentify</span>
+            </a>
+            <nav class="flex items-center justify-center text-sm md:text-base md:ml-auto">
+                <label for="home"><img src="/images/home.png" class="w-4 mr-2 cursor-pointer md:w-7" alt=""></label>
+                <a href="/" class="mr-5 cursor-pointer hover:text-white" name="about">Home</a>
+                <label for="about"><img src="/images/about.png" class="w-4 mr-2 cursor-pointer md:w-6" alt=""></label>
+                <a href="/about" class="mr-5 cursor-pointer hover:text-white whitespace-nowrap" name="about">About</a>
+                <label for="github"><img src="/images/github.png" class="w-4 mr-2 cursor-pointer md:w-6" alt=""></label>
+                <a href="https://github.com/roshanleharwani/" class="mr-5 cursor-pointer hover:text-white"
+                    name="github">Github</a>
+
+
+            </nav>
+        </div>
+    </header>
+    <% const sentiment=result.sentiment%>
+        <main class="flex flex-col items-center justify-center h-screen mt-64 bg-gray-900 md:mt-96">
+            <h1
+                class="px-4 py-2 mb-20 text-2xl text-gray-300 border-b-2 md:border-b-4 md:text-4xl md:px-8 whitespace-nowrap ">
+                Sentiment Indicator
+            </h1>
+            <div class="tooltip tooltip-top tooltip-warning  md:<%= sentiment == 'neutral' ? 'tooltip-open' : '' %>"
+                data-tip="Market sentiment is balanced, showing a stable outlook.">
+                <button class="w-20 h-12 mb-2 border-none btn-warning btn">Neutral</button>
+            </div>
+            <div class="flex items-center justify-around gap-4">
+                <div class="text-xl tooltip tooltip-left tooltip-success md:<%= sentiment == 'positive' ? 'tooltip-open' : '' %>"
+                    data-tip="Market sentiment is optimistic, indicating potential growth opportunities.">
+                    <button class="bg-green-300 border-none btn-success btn ">Positive</button>
+                </div>
+
+                <div
+                    class="md:p-10  md:border-[18px] border-8 md:border-b-0  border-b-0 rounded-full border-l-green-500 border-t-yellow-500 border-r-red-500">
+                    <div class="flex items-center <%= 
+  sentiment === 'neutral' 
+    ? 'justify-center' 
+    : (sentiment === 'positive' 
+        ? 'justify-start' 
+        : (sentiment === 'negative' 
+            ? 'justify-end' 
+            : '')
+      )
+%>
+ rounded-full md:size-72 size-32">
+                        <img id="rotateImage" src="/images/marker.png" class="md:w-5/6 w-20  <%= 
+  sentiment === 'neutral' 
+    ? 'rotate-90' 
+    : (sentiment === 'positive' 
+        ? 'rotate-0' 
+        : (sentiment === 'negative' 
+            ? 'rotate-180' 
+            : '')
+      )
+%> " alt="">
+                    </div>
+                </div>
+                <div class="tooltip tooltip-right tooltip-error md:<%= sentiment == 'negative' ? 'tooltip-open' : '' %> "
+                    data-tip="Market sentiment is cautious, suggesting potential risks ahead">
+                    <button class="mb-2 bg-red-300 border-none btn-error btn">Negative</button>
+                </div>
+            </div>
+
+            <div class="flex flex-col items-center justify-center gap-5 mt-5">
+
+                <div
+                    class="text-xl font-semibold md:text-3xl score bg-clip-text bg-gradient-to-br from-gray-100 via-slate-400 to-slate-600">
+                    Score: <%= (Number(result.score) || 0).toFixed(2) %>
+                </div>
+                <h1
+                    class="text-2xl font-semibold md:text-4xl bg-clip-text bg-gradient-to-br from-gray-100 via-slate-400 to-slate-700">
+                    Sourced Articles</h1>
+                <div class="flex items-center justify-center w-screen h-screen bg-gray-900 ">
+                    <textarea name="terminal" id="" readonly
+                        class="w-11/12 h-full p-2 text-green-500 border-4 border-white rounded-lg resize-none md:w-3/4 bg-gray-950">>_ Analysing Articles
+Number of Articles found: <%= result.total_articles %>
+                
+<% result.articles.forEach((article)=> { %>
+<%= article %>
+<% }) %>
+                    </textarea>
+                </div>
+
+
+            </div>
+        </main>
+</body>
+
+</html>
